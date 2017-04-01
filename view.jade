@@ -1,0 +1,66 @@
+template(name='layout')
+    +menu
+    .container
+        +yield
+
+template(name='menu')
+    nav.green: .nav-wrapper
+        ul.left
+            li.green.darken-2: a Beranda
+            li: a(href='/') Daftar Gaji
+            li: a(href='/create') Input Data
+        a.brand-logo.center KGB Diskanlut Riau
+        ul.right
+            li: a Profil
+            li: a Login
+            li: a Register
+
+template(name='home')
+    h3.center Daftar Gaji 
+    table.highlight
+        thead
+            tr
+                th Nama
+                th TTL
+                th NIP
+                th Status
+                th Gaji
+                th Tunjangan
+                th Potongan
+                th Aksi
+        tbody
+            each datas
+                tr
+                    td= nama
+                    td= ttl
+                    td= nip
+                    td= status
+                    td= pokok
+                    td= tunjangan
+                    td= potongan
+                    td
+                        a(href='/read/{{_id}}') Baca
+                        a Edit
+                        a Hapus
+
+template(name='create')
+    h1 Halaman Input Data
+    +quickForm(
+        collection = 'gaji'
+        schema = gajiS
+        type = 'insert'
+        id = 'formInput'
+    )
+
+template(name='read')
+    h1 Halaman Baca Data
+    p= data.nama
+    p= data.ttl
+    p= data.nip
+    p= data.status
+    p= data.pokok
+    p= data.tunjangan
+    p= data.potongan
+
+template(name='update')
+    h1 Halaman Ubah Data
